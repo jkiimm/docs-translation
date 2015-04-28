@@ -1,174 +1,257 @@
-{{jsSidebar("New_in_JS")}}
-ECMAScript 6 is the next version of the standard, code-named "ES.next".
-Specification drafts can be found on the official ECMA wiki.
-The first working draft based on ECMAScript 5.1, was published on July 12, 2011 as "ES.next".
-As of August 2014, ECMAScript 6 is already feature frozen,
-will be finished during 2015
-and will start to go into the official publication process starting in March 2015 (to be finished in June 2015).
+<div>{{jsSidebar("New_in_JS")}}</div>
 
-A channel for feedback on ECMAScript standards is es-discuss.
+<p>ECMAScript 6 is the next version of the standard, code-named "ES.next". <a href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts">Specification drafts </a>can be found on the official ECMA wiki. The first working draft based on ECMAScript 5.1, was published on July 12, 2011 as "ES.next". As of August 2014, ECMAScript 6 is already feature frozen, will be finished during 2015&nbsp;and will start to go into the official publication process starting in March 2015 (to be finished in June 2015).</p>
 
-Already supported features
+<p>A channel for feedback on ECMAScript standards is <a href="https://mail.mozilla.org/listinfo/es-discuss">es-discuss</a>.</p>
 
-The following features are already implemented in Firefox:
+<h2 id="Already_supported_features">Already supported features</h2>
 
-Standard library
+<p>The following features are already implemented in Firefox:</p>
 
-Additions to the Array object
+<h2 id="Standard_library">Standard library</h2>
 
-{{jsxref("Array")}} iteration with for...of (Firefox 13)
-{{jsxref("Array.from()")}} (Firefox 32)
-{{jsxref("Array.of()")}} (Firefox 25)
-{{jsxref("Array.prototype.fill()")}} (Firefox 31)
-{{jsxref("Array.prototype.find()")}}, {{jsxref("Array.prototype.findIndex()")}} (Firefox 25)
-{{jsxref("Array.prototype.entries()")}},
-{{jsxref("Array.prototype.keys()")}} (Firefox 28)
-{{jsxref("Array.prototype.copyWithin()")}} (Firefox 32)
-New Map and Set objects, and their weak counterparts
+<h3 id="Additions_to_the_Array_object">Additions to the <code>Array</code> object</h3>
 
-{{jsxref("Map")}} (Firefox 13)
-{{jsxref("Map")}} iteration with for...of (Firefox 17)
-{{jsxref("Map.prototype.forEach()")}} (Firefox 25)
-{{jsxref("Map.prototype.entries()")}},
-{{jsxref("Map.prototype.keys()")}},
-{{jsxref("Map.prototype.values()")}} (Firefox 20)
-Constructor argument: new {{jsxref("Map")}}(null) (Firefox 37)
-Monkey-patched set() in Constructor (Firefox 37)
-{{jsxref("Set")}} (Firefox 13)
-{{jsxref("Set")}} iteration with for...of (Firefox 17)
-{{jsxref("Set.prototype.forEach()")}} (Firefox 25)
-{{jsxref("Set.prototype.entries()")}},
-{{jsxref("Set.prototype.keys()")}},
-{{jsxref("Set.prototype.values()")}} (Firefox 24)
-Constructor argument: new {{jsxref("Set")}}(null) (Firefox 37)
-Monkey-patched add() in Constructor (Firefox 37)
-{{jsxref("WeakMap")}} (Firefox 6)
-{{jsxref("WeakMap.clear()")}} (Firefox 20)
-optional iterable argument in {{jsxref("WeakMap")}} constructor (Firefox 36)
-Constructor argument: new {{jsxref("WeakMap")}}(null) (Firefox 37)
-Monkey-patched set() in Constructor (Firefox 37)
-{{jsxref("WeakSet")}} (Firefox 34)
-Constructor argument: new {{jsxref("WeakSet")}}(null) (Firefox 37)
-Monkey-patched add() in Constructor (Firefox 37)
-  New Math functions
+<ul>
+ <li>{{jsxref("Array")}} iteration with <code>for...of</code> (<a href="/en-US/Firefox/Releases/13">Firefox 13</a>)</li>
+ <li>{{jsxref("Array.from()")}} (<a href="/en-US/Firefox/Releases/32">Firefox 32</a>)</li>
+ <li>{{jsxref("Array.of()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+ <li>{{jsxref("Array.prototype.fill()")}} (<a href="/en-US/Firefox/Releases/31">Firefox 31</a>)</li>
+ <li>{{jsxref("Array.prototype.find()")}}, {{jsxref("Array.prototype.findIndex()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+ <li>{{jsxref("Array.prototype.entries()")}},<br />
+  {{jsxref("Array.prototype.keys()")}} (<a href="/en-US/Firefox/Releases/28">Firefox 28</a>)</li>
+ <li>{{jsxref("Array.prototype.copyWithin()")}} (<a href="/en-US/Firefox/Releases/32">Firefox 32</a>)</li>
+</ul>
 
-{{jsxref("Math.imul()")}} (Firefox 20)
-{{jsxref("Math.clz32()")}} (Firefox 31)
-{{jsxref("Math.fround()")}} (Firefox 26)
-{{jsxref("Math.log10()")}}, {{jsxref("Math.log2()")}}, {{jsxref("Math.log1p()")}}, {{jsxref("Math.expm1()")}}, {{jsxref("Math.cosh()")}}, {{jsxref("Math.sinh()")}}, {{jsxref("Math.tanh()")}}, {{jsxref("Math.acosh()")}}, {{jsxref("Math.asinh()")}}, {{jsxref("Math.atanh()")}}, {{jsxref("Math.hypot()")}}, {{jsxref("Math.trunc()")}}, {{jsxref("Math.sign()")}}, {{jsxref("Math.cbrt()")}} (Firefox 25)
-Additions to the Number object
+<h3 id="New_Map_and_Set_objects.2C_and_their_weak_counterparts">New <code>Map</code> and <code>Set</code> objects, and their weak counterparts</h3>
 
-{{jsxref("Number.isNaN()")}} (Firefox 16)
-{{jsxref("Number.isFinite()")}} (Firefox 16)
-{{jsxref("Number.isInteger()")}} (Firefox 16)
-{{jsxref("Number.parseInt()")}} (Firefox 25)
-{{jsxref("Number.parseFloat()")}} (Firefox 25)
-{{jsxref("Number.EPSILON")}} (Firefox 25)
-{{jsxref("Number.MAX_SAFE_INTEGER")}}, {{jsxref("Number.MIN_SAFE_INTEGER")}} (Firefox 31)
-{{jsxref("Number.isSafeInteger()")}} (Firefox 32)
-Additions to the Object object
+<ul>
+ <li>{{jsxref("Map")}} (<a href="/en-US/Firefox/Releases/13">Firefox 13</a>)
 
-{{jsxref("Object.is()")}} (Firefox 22)
-{{jsxref("Object.setPrototypeOf()")}} (Firefox 31)
-{{jsxref("Object.assign()")}} (Firefox 34)
-{{jsxref("Object.getOwnPropertySymbols()")}} (Firefox 33)
-New Promise object
+  <ul>
+   <li>{{jsxref("Map")}} iteration with <code>for...of</code> (<a href="/en-US/Firefox/Releases/17">Firefox 17</a>)</li>
+   <li>{{jsxref("Map.prototype.forEach()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+   <li>{{jsxref("Map.prototype.entries()")}},<br />
+    {{jsxref("Map.prototype.keys()")}},<br />
+    {{jsxref("Map.prototype.values()")}} (<a href="/en-US/Firefox/Releases/20">Firefox 20</a>)</li>
+   <li>Constructor argument: <code>new {{jsxref("Map")}}(null)</code> (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+   <li>Monkey-patched <code>set()</code> in Constructor (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+  </ul>
+ </li>
+ <li>{{jsxref("Set")}} (<a href="/en-US/Firefox/Releases/13">Firefox 13</a>)
+  <ul>
+   <li>{{jsxref("Set")}} iteration with <code>for...of</code> (<a href="/en-US/Firefox/Releases/17">Firefox 17</a>)</li>
+   <li>{{jsxref("Set.prototype.forEach()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+   <li>{{jsxref("Set.prototype.entries()")}},<br />
+    {{jsxref("Set.prototype.keys()")}},<br />
+    {{jsxref("Set.prototype.values()")}} (<a href="/en-US/Firefox/Releases/24">Firefox 24</a>)</li>
+   <li>Constructor argument: <code>new {{jsxref("Set")}}(null)</code> (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+   <li>Monkey-patched <code>add()</code> in Constructor (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+  </ul>
+ </li>
+ <li>{{jsxref("WeakMap")}} (<a href="/en-US/Firefox/Releases/6">Firefox 6</a>)
+  <ul>
+   <li>{{jsxref("WeakMap.clear()")}} (<a href="/en-US/Firefox/Releases/20">Firefox 20</a>)</li>
+   <li>optional iterable argument in {{jsxref("WeakMap")}} constructor (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+   <li>Constructor argument: <code>new {{jsxref("WeakMap")}}(null)</code> (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+   <li>Monkey-patched <code>set()</code> in Constructor (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+  </ul>
+ </li>
+ <li>{{jsxref("WeakSet")}} (<a href="/en-US/Firefox/Releases/34">Firefox 34</a>)
+  <ul>
+   <li>Constructor argument: <code>new {{jsxref("WeakSet")}}(null)</code> (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+   <li>Monkey-patched <code>add()</code> in Constructor (<a href="/en-US/Firefox/Releases/37">Firefox 37</a>)</li>
+  </ul>
+ </li>
+</ul>
 
-{{jsxref("Promise")}} (Firefox 24, enabled by default in Firefox 29)
-Additions to the RegExp object
+<h3 id="New_Math_functions">New <code>Math</code> functions</h3>
 
-{{jsxref("RegExp")}} sticky (y) flag (Firefox 3)
-generic {{jsxref("RegExp.prototype.toString")}} (Firefox 39)
-Additions to the String object
+<ul>
+ <li>{{jsxref("Math.imul()")}} (<a href="/en-US/Firefox/Releases/20">Firefox 20</a>)</li>
+ <li>{{jsxref("Math.clz32()")}} (<a href="/en-US/Firefox/Releases/31">Firefox 31</a>)</li>
+ <li>{{jsxref("Math.fround()")}} (<a href="/en-US/Firefox/Releases/26">Firefox 26</a>)</li>
+ <li>{{jsxref("Math.log10()")}}, {{jsxref("Math.log2()")}}, {{jsxref("Math.log1p()")}}, {{jsxref("Math.expm1()")}}, {{jsxref("Math.cosh()")}}, {{jsxref("Math.sinh()")}}, {{jsxref("Math.tanh()")}}, {{jsxref("Math.acosh()")}}, {{jsxref("Math.asinh()")}}, {{jsxref("Math.atanh()")}}, {{jsxref("Math.hypot()")}}, {{jsxref("Math.trunc()")}}, {{jsxref("Math.sign()")}}, {{jsxref("Math.cbrt()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+</ul>
 
-{{jsxref("String.fromCodePoint()")}} (Firefox 29)
-{{jsxref("String.prototype.codePointAt()")}} (Firefox 29)
-{{jsxref("String.prototype.startsWith()")}}, {{jsxref("String.prototype.endsWith()")}} (Firefox 17)
-{{jsxref("String.prototype.includes()")}} (Firefox 17)
-{{jsxref("String.prototype.repeat()")}} (Firefox 24)
-{{jsxref("String.prototype.normalize()")}} (Firefox 31)
-{{jsxref("String.raw()")}} (Firefox 34)
-\{{jsxref("Global_Objects/String", "u{XXXXXX} unicode codepoing", "", 1)}} (Firefox 40)
-New Symbol object
+<h3 id="Additions_to_the_Number_object">Additions to the <code>Number</code> object</h3>
 
-{{jsxref("Symbol")}} (Firefox 36)
-{{jsxref("Symbol.iterator")}} (Firefox 36)
-{{jsxref("Symbol.for()")}} - global Symbol registry (Firefox 36)
-{{jsxref("Symbol.match")}} (Firefox 40)
-New class syntax
+<ul>
+ <li>{{jsxref("Number.isNaN()")}} (<a href="/en-US/Firefox/Releases/16">Firefox 16</a>)</li>
+ <li>{{jsxref("Number.isFinite()")}} (<a href="/en-US/Firefox/Releases/16">Firefox 16</a>)</li>
+ <li>{{jsxref("Number.isInteger()")}} (<a href="/en-US/Firefox/Releases/16">Firefox 16</a>)</li>
+ <li>{{jsxref("Number.parseInt()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+ <li>{{jsxref("Number.parseFloat()")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+ <li>{{jsxref("Number.EPSILON")}} (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+ <li>{{jsxref("Number.MAX_SAFE_INTEGER")}}, {{jsxref("Number.MIN_SAFE_INTEGER")}} (<a href="/en-US/Firefox/Releases/31">Firefox 31</a>)</li>
+ <li>{{jsxref("Number.isSafeInteger()")}} (<a href="/en-US/Firefox/Releases/32">Firefox 32</a>)</li>
+</ul>
 
-Basic support (Firefox 39)
-  extends support (Firefox 39)
-  static method definitions (Firefox 39)
-  Typed Arrays
+<h3 id="Additions_to_the_Object_object">Additions to the <code>Object</code> object</h3>
 
-  Typed arrays are specified as part of ECMAScript 6 and no longer in their own specification.
+<ul>
+ <li>{{jsxref("Object.is()")}} (<a href="/en-US/Firefox/Releases/22">Firefox 22</a>)</li>
+ <li>{{jsxref("Object.setPrototypeOf()")}} (<a href="/en-US/Firefox/Releases/31">Firefox 31</a>)</li>
+ <li>{{jsxref("Object.assign()")}} (<a href="/en-US/Firefox/Releases/34">Firefox 34</a>)</li>
+ <li>{{jsxref("Object.getOwnPropertySymbols()")}} (<a href="/en-US/Firefox/Releases/33">Firefox 33</a>)</li>
+</ul>
 
-{{jsxref("ArrayBuffer")}}
-{{jsxref("DataView")}}
-{{jsxref("Int8Array")}}
-{{jsxref("Uint8Array")}}
-{{jsxref("Uint8ClampedArray")}}
-{{jsxref("Int16Array")}}
-{{jsxref("Uint16Array")}}
-{{jsxref("Int32Array")}}
-{{jsxref("Uint32Array")}}
-{{jsxref("Float32Array")}}
-{{jsxref("Float64Array")}}
-Expressions and operators
+<h3 id="New_Promise_object">New <code>Promise</code> object</h3>
 
-Spread operator for arrays (Firefox 16)
-  use Symbol.iterator property (Firefox 36)
-  Spread operator for function calls (Firefox 27)
-  use Symbol.iterator property (Firefox 36)
-  Statements
+<ul>
+ <li>{{jsxref("Promise")}} (<a href="/en-US/Firefox/Releases/24">Firefox 24</a>, enabled by default in <a href="/en-US/Firefox/Releases/29">Firefox 29</a>)</li>
+</ul>
 
-  for...of (Firefox 13)
-  works in terms of .iterator() and .next() (Firefox 17)
-  use "@@iterator" property (Firefox 27)
-  use Symbol.iterator property (Firefox 36)
-  Functions
+<h3 id="Additions_to_the_RegExp_object">Additions to the <code>RegExp</code> object</h3>
 
-  Rest parameters (Firefox 15)
-  Default parameters (Firefox 15)
-  Arrow functions (Firefox 22)
-{{jsxref("Statements/function*", "Generator function")}} (Firefox 26)
-{{jsxref("Operators/yield", "yield")}} (Firefox 26)
-{{jsxref("Operators/yield*", "yield*")}} (Firefox 27)
-Other features
+<ul>
+ <li>{{jsxref("RegExp")}} sticky (y) flag (<a href="/en-US/Firefox/Releases/3">Firefox 3</a>)</li>
+ <li>generic {{jsxref("RegExp.prototype.toString")}} (<a href="/en-US/Firefox/Releases/39">Firefox 39</a>)</li>
+</ul>
 
-Binary and octal numeric literals (Firefox 25)
-  Template strings (Firefox 34)
-  Object initializer: shorthand property names (Firefox 33)
-  Object initializer: computed property names (Firefox 34)
-  Object initializer: shorthand method names (Firefox 34)
-  Features with compliance and stabilization changes ongoing
+<h3 id="Additions_to_the_String_object">Additions to the <code>String</code> object</h3>
 
-  The following features are (partially) implemented in Firefox,
-  but were introduced long before ES6 or are still discussed in the ECMA TC39 standards body.
+<ul>
+ <li>{{jsxref("String.fromCodePoint()")}} (<a href="/en-US/Firefox/Releases/29">Firefox 29</a>)</li>
+ <li>{{jsxref("String.prototype.codePointAt()")}} (<a href="/en-US/Firefox/Releases/29">Firefox 29</a>)</li>
+ <li>{{jsxref("String.prototype.startsWith()")}}, {{jsxref("String.prototype.endsWith()")}} (<a href="/en-US/Firefox/Releases/17">Firefox 17</a>)</li>
+ <li>{{jsxref("String.prototype.includes()")}} (<a href="/en-US/Firefox/Releases/17">Firefox 17</a>)</li>
+ <li>{{jsxref("String.prototype.repeat()")}} (<a href="/en-US/Firefox/Releases/24">Firefox 24</a>)</li>
+ <li>{{jsxref("String.prototype.normalize()")}} (<a href="/en-US/Firefox/Releases/31">Firefox 31</a>)</li>
+ <li>{{jsxref("String.raw()")}} (<a href="/en-US/Firefox/Releases/34">Firefox 34</a>)</li>
+ <li>{{jsxref("Global_Objects/String", "u{XXXXXX} unicode code point", "", 1)}} (<a href="/en-US/Firefox/Releases/40">Firefox 40</a>)</li>
+</ul>
 
-  Legacy iterators and generators (JS 1.7, Firefox 2)
-  ES6 iterators and generators implemented in Firefox 26+
-  Destructuring assignment (JS 1.7, Firefox 2) (ES6 compliance {{bug("950547")}})
-{{jsxref("Statements/const", "const")}} (JS 1.5, Firefox 1.0) (ES6 compliance {{bug("950547")}})
-{{jsxref("Statements/let", "let")}} (JS 1.7, Firefox 2) (ES6 compliance {{bug("950547")}})
-{{jsxref("Proxy")}} (Firefox 18) (ES6 compliance {{bug("978228")}})
-Features not yet supported
+<h3 id="New_Symbol_object">New <code>Symbol</code> object</h3>
 
-The following features are in the ECMAScript 6 draft specification,
-    but not yet implemented in Firefox:
+<ul>
+ <li>{{jsxref("Symbol")}} (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+ <li>{{jsxref("Symbol.iterator")}} (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+ <li>{{jsxref("Symbol.for()")}} - global Symbol registry (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+ <li>{{jsxref("Symbol.match")}} (<a href="/en-US/Firefox/Releases/40">Firefox 40</a>)</li>
+</ul>
 
-Modules (bug 568953)
-  import syntax
-  export syntax
-{{jsxref("Array.prototype.values()")}} ({{bug("875433")}})
-Reflect ({{bug("987514")}})
-\u{nnnnnn} Unicode code point escapes ({{bug("952985")}})
-Well-known symbols
-RegExp "u" flag
-See also
+<h3 id="New_class_syntax">New <code>class</code> syntax</h3>
 
-ECMAScript web site
-ECMAScript 6 specification drafts
-Mozilla ES6 tracking bug
-ECMAScript 6 support across browsers
+<ul>
+ <li>Basic support (<a href="/en-US/Firefox/Releases/39">Firefox 39</a>)</li>
+ <li><code>extends</code> support (<a href="/en-US/Firefox/Releases/39">Firefox 39</a>)</li>
+ <li><code>static</code> method definitions (<a href="/en-US/Firefox/Releases/39">Firefox 39</a>)</li>
+</ul>
+
+<h3 id="Typed_Arrays">Typed Arrays</h3>
+
+<p>Typed arrays are specified as part of ECMAScript 6 and no longer in <a href="https://www.khronos.org/registry/typedarray/specs/latest/">their own specification</a>.</p>
+
+<ul>
+ <li>{{jsxref("ArrayBuffer")}}</li>
+ <li>{{jsxref("DataView")}}</li>
+ <li>{{jsxref("Int8Array")}}</li>
+ <li>{{jsxref("Uint8Array")}}</li>
+ <li>{{jsxref("Uint8ClampedArray")}}</li>
+ <li>{{jsxref("Int16Array")}}</li>
+ <li>{{jsxref("Uint16Array")}}</li>
+ <li>{{jsxref("Int32Array")}}</li>
+ <li>{{jsxref("Uint32Array")}}</li>
+ <li>{{jsxref("Float32Array")}}</li>
+ <li>{{jsxref("Float64Array")}}</li>
+</ul>
+
+<h2 id="Expressions_and_operators">Expressions and operators</h2>
+
+<ul>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread operator for arrays</a> (<a href="/en-US/Firefox/Releases/16">Firefox 16</a>)
+
+  <ul>
+   <li>use <code>Symbol.iterator</code> property (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+  </ul>
+ </li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread operator for function calls</a> (<a href="/en-US/Firefox/Releases/27">Firefox 27</a>)
+  <ul>
+   <li>use <code>Symbol.iterator</code> property (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+  </ul>
+ </li>
+</ul>
+
+<h2 id="Statements">Statements</h2>
+
+<ul>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...of"><code>for...of</code></a> (<a href="/en-US/Firefox/Releases/13">Firefox 13</a>)
+
+  <ul>
+   <li>works in terms of <code>.iterator()</code> and <code>.next()</code> (<a href="/en-US/Firefox/Releases/17">Firefox 17</a>)</li>
+   <li>use <code>"@@iterator"</code> property (<a href="/en-US/Firefox/Releases/27">Firefox 27</a>)</li>
+   <li>use <code>Symbol.iterator</code> property (<a href="/en-US/Firefox/Releases/36">Firefox 36</a>)</li>
+  </ul>
+ </li>
+</ul>
+
+<h2 id="Functions">Functions</h2>
+
+<ul>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/rest_parameters">Rest parameters</a> (<a href="/en-US/Firefox/Releases/15">Firefox 15</a>)</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/default_parameters">Default parameters</a> (<a href="/en-US/Firefox/Releases/15">Firefox 15</a>)</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/arrow_functions">Arrow functions</a> (<a href="/en-US/Firefox/Releases/22">Firefox 22</a>)</li>
+ <li>{{jsxref("Statements/function*", "Generator function")}} (<a href="/en-US/Firefox/Releases/26">Firefox 26</a>)
+  <ul>
+   <li>{{jsxref("Operators/yield", "yield")}} (<a href="/en-US/Firefox/Releases/26">Firefox 26</a>)</li>
+   <li>{{jsxref("Operators/yield*", "yield*")}} (<a href="/en-US/Firefox/Releases/27">Firefox 27</a>)</li>
+  </ul>
+ </li>
+</ul>
+
+<h2 id="Other_features">Other features</h2>
+
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Numeric_literals">Binary and octal numeric literals</a> (<a href="/en-US/Firefox/Releases/25">Firefox 25</a>)</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/template_strings">Template strings</a> (<a href="/en-US/Firefox/Releases/34">Firefox 34</a>)</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Property_definitions">Object initializer: shorthand property names</a> (<a href="/en-US/Firefox/Releases/33">Firefox 33</a>)</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names">Object initializer: computed property names</a> (<a href="/en-US/Firefox/Releases/34">Firefox 34</a>)</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Method_definitions">Object initializer: shorthand method names</a> (<a href="/en-US/Firefox/Releases/34">Firefox 34</a>)</li>
+</ul>
+
+<h2 id="Features_with_compliance_and_stabilization_changes_ongoing">Features with compliance and stabilization changes ongoing</h2>
+
+<p>The following features are (partially) implemented in Firefox, but were introduced long before ES6 or are still discussed in the ECMA TC39 standards body.</p>
+
+<ul>
+ <li><a href="/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators">Legacy iterators and generators</a> (<a href="/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7">JS 1.7</a>, <a href="/en-US/Firefox/Releases/2">Firefox 2</a>)
+
+  <ul>
+   <li>ES6 iterators and generators implemented in Firefox 26+</li>
+  </ul>
+ </li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring assignment</a> (<a href="/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7">JS 1.7</a>, <a href="/en-US/Firefox/Releases/2">Firefox 2</a>) (ES6 compliance {{bug("950547")}})</li>
+ <li>{{jsxref("Statements/const", "const")}} (<a href="/en-US/docs/Web/JavaScript/New_in_JavaScript/1.5">JS 1.5</a>, Firefox 1.0) (ES6 compliance {{bug("950547")}})</li>
+ <li>{{jsxref("Statements/let", "let")}} (<a href="/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7">JS 1.7</a>, <a href="/en-US/Firefox/Releases/2">Firefox 2</a>) (ES6 compliance {{bug("950547")}})</li>
+ <li>{{jsxref("Proxy")}} (<a href="/en-US/Firefox/Releases/18">Firefox 18</a>) (ES6 compliance {{bug("978228")}})</li>
+</ul>
+
+<h2 id="Features_not_yet_supported">Features not yet supported</h2>
+
+<p>The following features are in the ECMAScript 6 draft specification, but not yet implemented in Firefox:</p>
+
+<ul>
+ <li>Modules (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=568953">bug 568953</a>)
+
+  <ul>
+   <li><code>import</code> syntax</li>
+   <li><code>export</code> syntax</li>
+  </ul>
+ </li>
+ <li>{{jsxref("Array.prototype.values()")}} ({{bug("875433")}})</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect"><code>Reflect</code></a> ({{bug("987514")}})</li>
+ <li>\u{nnnnnn} Unicode code point escapes ({{bug("952985")}})</li>
+ <li>Well-known symbols</li>
+ <li>RegExp "u" flag</li>
+</ul>
+
+<h2 id="See_also">See also</h2>
+
+<ul>
+ <li><a href="http://www.ecmascript.org/">ECMAScript web site</a></li>
+ <li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts">ECMAScript 6 specification drafts</a></li>
+ <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=694100">Mozilla ES6 tracking bug</a></li>
+ <li><a href="http://kangax.github.io/es5-compat-table/es6" title="http://kangax.github.io/es5-compat-table">ECMAScript 6 support across browsers</a></li>
+</ul>
+
