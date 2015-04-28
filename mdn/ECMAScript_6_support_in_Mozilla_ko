@@ -1,0 +1,183 @@
+{{jsSidebar("New_in_JS")}}
+ECMAScript 6은 차기 표준이고, 코드네임은 "ES.next"입니다.
+명세 초안은 ECMA 위키에서 확인하실 수 있습니다.
+첫 초안 작업은 2011년 7월 12일에 "ES.next"로 공개된 ECMAScript 5.1에 기반하여 작성되었습니다.
+2014년 8월 시점에서 ECMAScript 6은 기능 추가가 동결되었으며,
+2015년 내에 완료된 후, 2015년 3월부터 공식 발표 과정으로 넘어갈 것입니다(2015년 6월에 완료).
+
+ECMAScript 표준에 대한 피드백 채널은 es-discuss을 이용하시면 됩니다.
+
+이미 지원되는 특징
+
+다음 특징들은 Firefox에서 이미 구현되어 있습니다:
+
+표준 라이브러리
+
+Array 객체 추가사항
+{{jsxref("Array")}} for...of 반복문 (Firefox 13)
+{{jsxref("Array.from()")}} (Firefox 32)
+{{jsxref("Array.of()")}} (Firefox 25)
+{{jsxref("Array.prototype.fill()")}} (Firefox 31)
+{{jsxref("Array.prototype.find()")}}, {{jsxref("Array.prototype.findIndex()")}} (Firefox 25)
+{{jsxref("Array.prototype.entries()")}},
+{{jsxref("Array.prototype.keys()")}} (Firefox 28)
+{{jsxref("Array.prototype.copyWithin()")}} (Firefox 32)
+
+새로운 Map과 Set 객체, 그리고 이것들의 약한 대응객체(WeakMap, WeakSet)
+{{jsxref("Map")}} (Firefox 13)
+{{jsxref("Map")}} for...of 반복문 (Firefox 17)
+{{jsxref("Map.prototype.forEach()")}} (Firefox 25)
+{{jsxref("Map.prototype.entries()")}},
+{{jsxref("Map.prototype.keys()")}},
+{{jsxref("Map.prototype.values()")}} (Firefox 20)
+생성자 인수: new {{jsxref("Map")}}(null) (Firefox 37)
+생성자 안에 있는 몽키 패치된 set() (Firefox 37)
+{{jsxref("Set")}} (Firefox 13)
+{{jsxref("Set")}} for...of 반복문 (Firefox 17)
+{{jsxref("Set.prototype.forEach()")}} (Firefox 25)
+{{jsxref("Set.prototype.entries()")}},
+{{jsxref("Set.prototype.keys()")}},
+{{jsxref("Set.prototype.values()")}} (Firefox 24)
+생성자 인수: new {{jsxref("Set")}}(null) (Firefox 37)
+생성자 안에 있는 몽키 패치된 add() (Firefox 37)
+{{jsxref("WeakMap")}} (Firefox 6)
+{{jsxref("WeakMap.clear()")}} (Firefox 20)
+{{jsxref("WeakMap")}} 생성자에서 반복 가능한 옵션 인수 (Firefox 36)
+생성자 인수: new {{jsxref("WeakMap")}}(null) (Firefox 37)
+생성자 안에 있는 몽키 패치된 set() (Firefox 37)
+{{jsxref("WeakSet")}} (Firefox 34)
+생성자 인수: new {{jsxref("WeakSet")}}(null) (Firefox 37)
+생성자 안에 있는 몽키 패치된 add() (Firefox 37)
+
+새로운 Math 함수
+{{jsxref("Math.imul()")}} (Firefox 20)
+{{jsxref("Math.clz32()")}} (Firefox 31)
+{{jsxref("Math.fround()")}} (Firefox 26)
+{{jsxref("Math.log10()")}}, {{jsxref("Math.log2()")}}, {{jsxref("Math.log1p()")}}, {{jsxref("Math.expm1()")}}, {{jsxref("Math.cosh()")}}, {{jsxref("Math.sinh()")}}, {{jsxref("Math.tanh()")}}, {{jsxref("Math.acosh()")}}, {{jsxref("Math.asinh()")}}, {{jsxref("Math.atanh()")}}, {{jsxref("Math.hypot()")}}, {{jsxref("Math.trunc()")}}, {{jsxref("Math.sign()")}}, {{jsxref("Math.cbrt()")}} (Firefox 25)
+
+Number 객체 추가사항
+{{jsxref("Number.isNaN()")}} (Firefox 16)
+{{jsxref("Number.isFinite()")}} (Firefox 16)
+{{jsxref("Number.isInteger()")}} (Firefox 16)
+{{jsxref("Number.parseInt()")}} (Firefox 25)
+{{jsxref("Number.parseFloat()")}} (Firefox 25)
+{{jsxref("Number.EPSILON")}} (Firefox 25)
+{{jsxref("Number.MAX_SAFE_INTEGER")}}, {{jsxref("Number.MIN_SAFE_INTEGER")}} (Firefox 31)
+{{jsxref("Number.isSafeInteger()")}} (Firefox 32)
+
+Object 객체 추가사항
+{{jsxref("Object.is()")}} (Firefox 22)
+{{jsxref("Object.setPrototypeOf()")}} (Firefox 31)
+{{jsxref("Object.assign()")}} (Firefox 34)
+{{jsxref("Object.getOwnPropertySymbols()")}} (Firefox 33)
+
+새로운 Promise 객체
+{{jsxref("Promise")}} (Firefox 24(Firefox 29에서 기본값으로 활성화 되어 있음))
+
+RegExp 객체 추가사항
+{{jsxref("RegExp")}} sticky (y) flag (Firefox 3)
+일반적 {{jsxref("RegExp.prototype.toString")}} (Firefox 39)
+
+String 객체 추가사항
+{{jsxref("String.fromCodePoint()")}} (Firefox 29)
+{{jsxref("String.prototype.codePointAt()")}} (Firefox 29)
+{{jsxref("String.prototype.startsWith()")}}, {{jsxref("String.prototype.endsWith()")}} (Firefox 17)
+{{jsxref("String.prototype.includes()")}} (Firefox 17)
+{{jsxref("String.prototype.repeat()")}} (Firefox 24)
+{{jsxref("String.prototype.normalize()")}} (Firefox 31)
+{{jsxref("String.raw()")}} (Firefox 34)
+{{jsxref("Global_Objects/String", "\u{XXXXXX} 유니코드 코드 포인트", "", 1)}} (Firefox 40)
+
+새로운 Symbol 객체
+{{jsxref("Symbol")}} (Firefox 36)
+{{jsxref("Symbol.iterator")}} (Firefox 36)
+{{jsxref("Symbol.for()")}} - global Symbol registry (Firefox 36)
+{{jsxref("Symbol.match")}} (Firefox 40)
+
+새로운 클래스 구문
+
+기본 지원 (Firefox 39)
+extends 지원 (Firefox 39)
+static 메소드 정의 (Firefox 39)
+
+  형식화된 배열
+
+  형식화된 배열은 ECMAScript 6의 일부로 지정되었고, 더 이상 자신의 기존 명세서를 따르지 않습니다.
+
+{{jsxref("ArrayBuffer")}}
+{{jsxref("DataView")}}
+{{jsxref("Int8Array")}}
+{{jsxref("Uint8Array")}}
+{{jsxref("Uint8ClampedArray")}}
+{{jsxref("Int16Array")}}
+{{jsxref("Uint16Array")}}
+{{jsxref("Int32Array")}}
+{{jsxref("Uint32Array")}}
+{{jsxref("Float32Array")}}
+{{jsxref("Float64Array")}}
+
+표현식과 연산자
+
+배열을 위한 Spread 연산자 (Firefox 16)
+  Symbol.iterator 속성 사용 (Firefox 36)
+함수 호출을 위한 Spread 연산자 (Firefox 27)
+  Symbol.iterator 속성 사용 (Firefox 36)
+
+
+  문(문장)
+
+  for...of (Firefox 13)
+  .iterator()와 .next()로 동작 (Firefox 17)
+  "@@iterator" 속성 사용 (Firefox 27)
+  Symbol.iterator 속성 사용 (Firefox 36)
+
+
+  함수
+
+  Rest 매개 변수 (Firefox 15)
+  Default 매개 변수 (Firefox 15)
+  Arrow 함수 (Firefox 22)
+{{jsxref("Statements/function*", "Generator 함수")}} (Firefox 26)
+{{jsxref("Operators/yield", "yield")}} (Firefox 26)
+{{jsxref("Operators/yield*", "yield*")}} (Firefox 27)
+
+그 밖의 기능
+
+
+2진과 8진 숫자 리터럴 (Firefox 25)
+  템플릿 문자열 (Firefox 34)
+  객체 이니셜라이저: 줄임 속성 이름 (Firefox 33)
+  객체 이니셜라이저: 계산된 속성 이름 (Firefox 34)
+  객체 이니셜라이저: 줄임 메소드 이름 (Firefox 34)
+  
+
+지속적인 호환성 및 안정화 특징 변경
+  다음 특징들은 Firefox에서 부분적으로 구현되어 있지만,
+  ES6보다 한참 전에 도입되어 ECMA TC39 표준화 단체에서 계속 논의되고 있습니다.
+
+  레거시 반복자와 생성자 (JS 1.7, Firefox 2)
+  ES6 반복자와 생성자는 Firefox 26+에서 구현되어 있음
+  분할 할당 (JS 1.7, Firefox 2) (ES6 호환 {{bug("950547")}})
+{{jsxref("Statements/const", "const")}} (JS 1.5, Firefox 1.0) (ES6 호환 {{bug("950547")}})
+{{jsxref("Statements/let", "let")}} (JS 1.7, Firefox 2) (ES6 호환 {{bug("950547")}})
+{{jsxref("Proxy")}} (Firefox 18) (ES6 호환 {{bug("978228")}})
+
+아직 지원하지 않는 기능
+
+다음 특징들은 ECMAScript 6 초안 명세서에 존재하지만, 아직 Firefox에서는 구현되지 않았습니다:
+
+모듈 (bug 568953)
+  import 구문
+  export 구문
+{{jsxref("Array.prototype.values()")}} ({{bug("875433")}})
+Reflect ({{bug("987514")}})
+\u{nnnnnn} 유니코드 코드 포인트 이스케이프 ({{bug("952985")}})
+잘 알려진 기호
+RegExp "u" 플래그
+
+같이 보기
+
+ECMAScript 웹 사이트
+ECMAScript 6 명세서 초안
+Mozilla ES6 버그 추적
+브라우저에서의 ECMAScript 6 지원
