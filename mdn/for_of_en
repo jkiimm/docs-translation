@@ -1,0 +1,179 @@
+<div>{{jsSidebar("Statements")}}{{harmony}}</div>
+
+<p>The <strong><code>for...of</code> statement </strong>creates a loop Iterating over <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/iterable">iterable objects</a> (including {{jsxref("Array")}},&nbsp;{{jsxref("Map")}}, {{jsxref("Set")}},&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments">arguments</a>&nbsp;object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property.</p>
+
+<h2 id="Syntax">Syntax</h2>
+
+<pre class="syntaxbox">
+for (<em>variable</em> of <em>object</em>) {
+  <em>statement
+</em>}
+</pre>
+
+<dl>
+ <dt><code>variable</code></dt>
+ <dd>On each iteration a value of a different property is assigned to <em>variable</em>.</dd>
+ <dt><code>object</code></dt>
+ <dd>Object whose enumerable properties are iterated.</dd>
+</dl>
+
+<h2 id="Examples">Examples</h2>
+
+<h3 id="Difference_between_for...of_and_for...in">Difference between <code>for...of</code> and <code>for...in</code></h3>
+
+<p>The following example shows the difference between a <code>for...of</code> loop and a <code><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="en-US/docs/JavaScript/Reference/Statements/for...in">for...in</a></code> loop. While <code>for...in</code> iterates over property names, <code>for...of</code> iterates over property values:</p>
+
+<pre class="brush:js">
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (let i in arr) {
+   console.log(i); // logs "0", "1", "2", "foo"
+}
+
+for (let i of arr) {
+   console.log(i); // logs "3", "5", "7"
+}
+</pre>
+
+<h3 id="Using_Array.prototype.forEach()">Using <code>Array.prototype.forEach()</code></h3>
+
+<p>To get the same property values the <code>for...of</code> loop would return, you can also use the {{jsxref("Array.prototype.forEach()")}} method:</p>
+
+<pre class="brush: js">
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+arr.forEach(function (element, index) {
+    console.log(element); // logs "3", "5", "7"
+    console.log(index);   // logs "0", "1", "2"
+});
+
+// or with Object.keys()
+
+Object.keys(arr).forEach(function (element, index) {
+    console.log(arr[element]); // logs "3", "5", "7", "hello"
+    console.log(arr[index]);   // logs "3", "5", "7"
+});</pre>
+
+<h3 id="Iterating_over_DOM_collections">Iterating over DOM collections</h3>
+
+<p>Iterating over DOM collections like {{domxref("NodeList")}}: the following example adds a <code>read</code> class to paragraphs that are direct descendants of an article:</p>
+
+<pre class="brush:js">
+// Note: This will only work in platforms that have
+// implemented NodeList.prototype[Symbol.iterator]
+let articleParagraphs = document.querySelectorAll("article &gt; p");
+
+for (let paragraph of articleParagraphs) {
+  paragraph.classList.add("read");
+}
+</pre>
+
+<h3 id="Iterating_over_generators">Iterating over generators</h3>
+
+<p>You can also iterate over <a href="/en-US/docs/Web/JavaScript/Reference/Statements/function*">generators</a>:</p>
+
+<pre class="brush:js">
+function* fibonacci() { // a generator function
+    let [prev, curr] = [0, 1];
+    for (;;) {
+        [prev, curr] = [curr, prev + curr];
+        yield curr;
+    }
+}
+
+for (let n of fibonacci()) {
+    // truncate the sequence at 1000
+    if (n &gt; 1000)
+        break;
+    print(n);
+}
+</pre>
+
+<h2 id="Specifications">Specifications</h2>
+
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>{{SpecName('ES6', '#sec-for-in-and-for-of-statements', 'for...of statement')}}</td>
+   <td>{{Spec2('ES6')}}</td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+
+<h2 id="Browser_compatibility">Browser compatibility</h2>
+
+<p>{{CompatibilityTable}}</p>
+
+<div id="compat-desktop">
+<table class="compat-table">
+ <tbody>
+  <tr>
+   <th>Feature</th>
+   <th>Chrome</th>
+   <th>Firefox (Gecko)</th>
+   <th>Internet Explorer</th>
+   <th>Opera</th>
+   <th>Safari</th>
+  </tr>
+  <tr>
+   <td>Basic support</td>
+   <td>{{CompatChrome(29)}}<a href="#chrome-note-1">[1]</a><br />
+    {{CompatChrome(38)}}</td>
+   <td>{{CompatGeckoDesktop("13")}}<br />
+    {{CompatGeckoDesktop("17")}} (.iterator)<br />
+    {{CompatGeckoDesktop("27")}} ("@@iterator")<br />
+    {{CompatGeckoDesktop("36")}} (Symbol.iterator)</td>
+   <td>{{CompatNo}}</td>
+   <td>25</td>
+   <td>7.1</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<div id="compat-mobile">
+<table class="compat-table">
+ <tbody>
+  <tr>
+   <th>Feature</th>
+   <th>Android</th>
+   <th>Chrome for Android</th>
+   <th>Firefox Mobile (Gecko)</th>
+   <th>IE Mobile</th>
+   <th>Opera Mobile</th>
+   <th>Safari Mobile</th>
+  </tr>
+  <tr>
+   <td>Basic support</td>
+   <td>{{CompatUnknown}}</td>
+   <td>{{CompatChrome(29)}}<a href="#chrome-note-1">[1]</a><br />
+    {{CompatChrome(38)}}</td>
+   <td>{{CompatGeckoMobile("13")}}<br />
+    {{CompatGeckoMobile("17")}} (.iterator)<br />
+    {{CompatGeckoMobile("27")}} ("@@iterator")<br />
+    {{CompatGeckoMobile("36")}} (Symbol.iterator)</td>
+   <td>{{CompatUnknown}}</td>
+   <td>{{CompatUnknown}}</td>
+   <td>iOS 8</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<p><a name="chrome-note-1"></a>[1]&nbsp;The feature is available behind a preference. In chrome://flags/#enable-javascript-harmony, activate the entry “Enable Experimental JavaScript”.</p>
+
+<h2 id="See_also">See also</h2>
+
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for_each...in">for each...in</a> - a similar statement, but iterates over the values of object's properties, rather than the property names themselves (deprecated).</li>
+ <li>{{jsxref("Array.prototype.forEach()")}}</li>
+</ul>
+

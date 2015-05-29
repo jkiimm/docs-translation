@@ -1,0 +1,184 @@
+<div>{{jsSidebar("Statements")}}{{harmony}}</div>
+
+<p><strong><code>for...of</code> 문</strong>은 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/iterable">반복 가능한 객체</a>({{jsxref("Array")}}, {{jsxref("Map")}}, {{jsxref("Set")}}, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments">arguments</a> 객체 등을 포함)에 반복을 수행하고,
+사용자 정의 반복 후크를 호출하는 루프를 생성합니다.
+사용자 정의 반복 후크는 각 속성 값으로 호출되는 구문으로 구성됩니다.</p>
+
+<h2 id="Syntax">구문</h2>
+
+<pre class="syntaxbox">
+for (<em>variable</em> of <em>object</em>) {
+  <em>statement
+</em>}
+</pre>
+
+<dl>
+ <dt><code>variable</code></dt>
+ <dd>각 반복문에 따라 달라지는 속성의 값은 <em>variable</em>에 할당됩니다.</dd>
+ <dt><code>object</code></dt>
+ <dd>객체는 열거 가능한 속성에 대해 반복됩니다.</dd>
+</dl>
+
+<h2 id="Examples">예시</h2>
+
+<h3 id="Difference_between_for...of_and_for...in"><code>for...of</code>와 <code>for...in</code>의 차이점</h3>
+
+<p>다음 예제는<code>for...of</code> 루프와
+<code><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="en-US/docs/JavaScript/Reference/Statements/for...in">for...in</a></code> 루프의 차이점을 보여줍니다.
+<code>for...in</code>이 속성 이름을 반복하는데 반하여, <code>for...of</code>는 속성 값을 반복합니다:</p>
+
+<pre class="brush:js">
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (let i in arr) {
+   console.log(i); // "0", "1", "2", "foo" 출력
+}
+
+for (let i of arr) {
+   console.log(i); // "3", "5", "7" 출력
+}
+</pre>
+
+<h3 id="Using_Array.prototype.forEach()"><code>Array.prototype.forEach()</code> 사용</h3>
+
+<p><code>for...of</code> 루프가 반환하는 값과 동일한 속성 값을 얻으려면, {{jsxref("Array.prototype.forEach()")}} 메소드를 이용합니다:</p>
+
+<pre class="brush: js">
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+arr.forEach(function (element, index) {
+    console.log(element); // "3", "5", "7" 출력
+    console.log(index);   // "0", "1", "2" 출력
+});
+
+// 혹은 Object.keys()를 이용하여
+
+Object.keys(arr).forEach(function (element, index) {
+    console.log(arr[element]); // "3", "5", "7", "hello" 출력
+    console.log(arr[index]);   // "3", "5", "7" 출력 
+});</pre>
+
+<h3 id="Iterating_over_DOM_collections">DOM 컬렉션에 대한 반복</h3>
+
+<p>{{domxref("NodeList")}}와 같은 DOM 컬렉션에 대한 반복:
+다음 예제는 article의 직계 자손인 paragraph로 <code>read</code> 클래스를 추가합니다:</p>
+
+<pre class="brush:js">
+// 일러두기: NodeList.prototype[Symbol.iterator]를 구현해 온 플랫폼에서만 작동될 것입니다.
+let articleParagraphs = document.querySelectorAll("article &gt; p");
+
+for (let paragraph of articleParagraphs) {
+  paragraph.classList.add("read");
+}
+</pre>
+
+<h3 id="Iterating_over_generators">생성자에 대한 반복</h3>
+
+<p><a href="/en-US/docs/Web/JavaScript/Reference/Statements/function*">생성자</a>에 대해서도 반복이 가능합니다:</p>
+
+<pre class="brush:js">
+function* fibonacci() { // 생성자 함수
+    let [prev, curr] = [0, 1];
+    for (;;) {
+        [prev, curr] = [curr, prev + curr];
+        yield curr;
+    }
+}
+
+for (let n of fibonacci()) {
+    // 1000 일 때, 반복 종료
+    if (n &gt; 1000)
+        break;
+    print(n);
+}
+</pre>
+
+<h2 id="Specifications">명세</h2>
+
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>{{SpecName('ES6', '#sec-for-in-and-for-of-statements', 'for...of statement')}}</td>
+   <td>{{Spec2('ES6')}}</td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+
+<h2 id="Browser_compatibility">브라우저 호환성</h2>
+
+<p>{{CompatibilityTable}}</p>
+
+<div id="compat-desktop">
+<table class="compat-table">
+ <tbody>
+  <tr>
+   <th>Feature</th>
+   <th>Chrome</th>
+   <th>Firefox (Gecko)</th>
+   <th>Internet Explorer</th>
+   <th>Opera</th>
+   <th>Safari</th>
+  </tr>
+  <tr>
+   <td>Basic support</td>
+   <td>{{CompatChrome(29)}}<a href="#chrome-note-1">[1]</a><br />
+    {{CompatChrome(38)}}</td>
+   <td>{{CompatGeckoDesktop("13")}}<br />
+    {{CompatGeckoDesktop("17")}} (.iterator)<br />
+    {{CompatGeckoDesktop("27")}} ("@@iterator")<br />
+    {{CompatGeckoDesktop("36")}} (Symbol.iterator)</td>
+   <td>{{CompatNo}}</td>
+   <td>25</td>
+   <td>7.1</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<div id="compat-mobile">
+<table class="compat-table">
+ <tbody>
+  <tr>
+   <th>Feature</th>
+   <th>Android</th>
+   <th>Chrome for Android</th>
+   <th>Firefox Mobile (Gecko)</th>
+   <th>IE Mobile</th>
+   <th>Opera Mobile</th>
+   <th>Safari Mobile</th>
+  </tr>
+  <tr>
+   <td>Basic support</td>
+   <td>{{CompatUnknown}}</td>
+   <td>{{CompatChrome(29)}}<a href="#chrome-note-1">[1]</a><br />
+    {{CompatChrome(38)}}</td>
+   <td>{{CompatGeckoMobile("13")}}<br />
+    {{CompatGeckoMobile("17")}} (.iterator)<br />
+    {{CompatGeckoMobile("27")}} ("@@iterator")<br />
+    {{CompatGeckoMobile("36")}} (Symbol.iterator)</td>
+   <td>{{CompatUnknown}}</td>
+   <td>{{CompatUnknown}}</td>
+   <td>iOS 8</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<p><a name="chrome-note-1"></a>[1]&nbsp;이 기능은 기본 설정에서 선택할 수 있습니다.
+chrome://flags/#enable-javascript-harmony에서 “Enable Experimental JavaScript” 항목 활성화.</p>
+
+<h2 id="See_also">같이 보기</h2>
+
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for_each...in">for each...in</a> - 유사한 문이지만, 속성 이름 자체가 아니라 객체의 속성 값을 반복합니다(사용되지 않음).</li>
+ <li>{{jsxref("Array.prototype.forEach()")}}</li>
+</ul>
+

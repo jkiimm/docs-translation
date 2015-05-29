@@ -1,0 +1,243 @@
+<div>{{JSRef("Global_Objects", "Array")}} {{harmony}}</div>
+
+<h2 id="Summary" name="Summary">요약</h2>
+
+<p><code><strong>Array.from()</strong></code> 메소드는 유사 배열 혹은 반복가능한 객체로부터 새 <code>Array</code> 인스턴스를 만듭니다.</p>
+
+<p>ES6에서 클래스 구문은 내장 클래스 및 사용자 정의 클래스의 서브 클래스화를 허용합니다.
+결과적으로, <code><strong>Array.from</strong></code>과 같은 클래스 정적 메소드는
+<code><strong>Array</strong></code>가 아닌,
+<code><strong>Array</strong></code>의 서브 클래스를 상속받고
+서브 클래스의 새 인스턴스를 만듭니다.
+</p>
+
+<h2 id="Syntax" name="Syntax">구문</h2>
+
+<pre class="syntaxbox"><code>Array.from(arrayLike[, mapFn[, thisArg]])
+</code></pre>
+
+<h3 id="Parameters" name="Parameters"><span>매개 변수</span></h3>
+
+<dl>
+ <dt><code>arrayLike</code></dt>
+ <dd>배열로 변환할 유사 배열 혹은 반복 가능한 객체.</dd>
+ <dt><code>mapFn</code></dt>
+ <dd>선택 사항. 배열 모든 요소에 호출 할 Map 함수.</dd>
+ <dt><code>thisArg</code></dt>
+ <dd>선택 사항. <code>mapFn</code> 실행 시에 <code>this</code>로 사용할 값.</dd>
+</dl>
+
+<h2 id="Description" name="Description">설명</h2>
+
+<p><code>Array.from()</code>은 다음으로부터 <code>Array</code>를 만듭니다:</p>
+
+<ul>
+ <li>유사 배열 객체 (<code>length</code> 속성과 인덱싱된 요소를 가진 객체)</li> 혹은
+ <li><a href="/en-US/docs/Web/JavaScript/Guide/iterable">반복 가능한 객체</a> ({{jsxref("Map")}}과 {{jsxref("Set")}}와 같이 객체의 요소를 얻을 수 있는 객체).</li>
+</ul>
+
+<p><code>Array.from()</code> has an optional parameter <code>mapFn</code>, which allows you to execute a {{jsxref("Array.prototype.map", "map")}} function on each element of the array (or subclass object) that is being created. More clearly,<code> Array.from(obj, mapFn, thisArg)</code> is the same as <code>Array.from(obj).map(mapFn, thisArg)</code>, except that it does not create an intermediate array. This is especially important for certain array subclasses, like <a href="/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>, since the intermediate array would necessarily have values truncated to fit into the appropriate type.</p>
+
+<p>The <code>length</code> property of the <code>from()</code> method is 1.</p>
+
+<h2 id="Examples">Examples</h2>
+
+<pre class="brush: js">// Array-like object (arguments) to Array
+function f() {
+  return Array.from(arguments);
+}
+
+f(1, 2, 3); 
+// [1, 2, 3]
+
+
+// Any iterable object...
+// Set
+var s = new Set(["foo", window]);
+Array.from(s);   
+// ["foo", window]
+
+
+// Map
+var m = new Map([[1, 2], [2, 4], [4, 8]]);
+Array.from(m);                          
+// [[1, 2], [2, 4], [4, 8]]  
+
+
+// String
+Array.from("foo");                      
+// ["f", "o", "o"]
+
+
+// Using an arrow function as the map function to
+// manipulate the elements
+Array.from([1, 2, 3], x => x + x);      
+// [2, 4, 6]
+
+
+// Generate a sequence of numbers
+Array.from({length: 5}, (v, k) => k);    
+// [0, 1, 2, 3, 4]
+
+</pre>
+
+<h2 id="Polyfill">Polyfill</h2>
+
+<p><code>Array.from</code> was added to the ECMA-262 standard in the 6th edition; as such it may not be present in other implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of <code>Array.from</code> in implementations that don't natively support it.  This algorithm is exactly the one specified in ECMA-262, 6th edition, assuming <code>Object</code> and <code>TypeError</code> have their original values and that <code>callback.call</code> evaluates to the original value of {{jsxref("Function.prototype.call")}}. In addition, since true iterables can not be polyfilled, this implementation does not support generic iterables as defined in the 6th edition of ECMA-262.</p>
+
+<pre class="brush: js">// Production steps of ECMA-262, Edition 6, 22.1.2.1
+// Reference: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
+if (!Array.from) {
+  Array.from = (function () {
+    var toStr = Object.prototype.toString;
+    var isCallable = function (fn) {
+      return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+    };
+    var toInteger = function (value) {
+      var number = Number(value);
+      if (isNaN(number)) { return 0; }
+      if (number === 0 || !isFinite(number)) { return number; }
+      return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+    };
+    var maxSafeInteger = Math.pow(2, 53) - 1;
+    var toLength = function (value) {
+      var len = toInteger(value);
+      return Math.min(Math.max(len, 0), maxSafeInteger);
+    };
+
+    // The length property of the from method is 1.
+    return function from(arrayLike/*, mapFn, thisArg */) {
+      // 1. Let C be the this value.
+      var C = this;
+
+      // 2. Let items be ToObject(arrayLike).
+      var items = Object(arrayLike);
+
+      // 3. ReturnIfAbrupt(items).
+      if (arrayLike == null) {
+        throw new TypeError("Array.from requires an array-like object - not null or undefined");
+      }
+
+      // 4. If mapfn is undefined, then let mapping be false.
+      var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+      var T;
+      if (typeof mapFn !== 'undefined') {
+        // 5. else      
+        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+        if (!isCallable(mapFn)) {
+          throw new TypeError('Array.from: when provided, the second argument must be a function');
+        }
+
+        // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+        if (arguments.length > 2) {
+          T = arguments[2];
+        }
+      }
+
+      // 10. Let lenValue be Get(items, "length").
+      // 11. Let len be ToLength(lenValue).
+      var len = toLength(items.length);
+
+      // 13. If IsConstructor(C) is true, then
+      // 13. a. Let A be the result of calling the [[Construct]] internal method of C with an argument list containing the single item len.
+      // 14. a. Else, Let A be ArrayCreate(len).
+      var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+
+      // 16. Let k be 0.
+      var k = 0;
+      // 17. Repeat, while k < len… (also steps a - h)
+      var kValue;
+      while (k < len) {
+        kValue = items[k];
+        if (mapFn) {
+          A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+        } else {
+          A[k] = kValue;
+        }
+        k += 1;
+      }
+      // 18. Let putStatus be Put(A, "length", len, true).
+      A.length = len;
+      // 20. Return A.
+      return A;
+    };
+  }());
+}
+</pre>
+
+<h2 id="Specifications">Specifications</h2>
+
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>{{SpecName('ES6', '#sec-array.from', 'Array.from')}}</td>
+   <td>{{Spec2('ES6')}}</td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+
+<h2 id="Browser_compatibility">Browser compatibility</h2>
+
+<div>{{CompatibilityTable}}</div>
+
+<div id="compat-desktop">
+<table class="compat-table">
+ <tbody>
+  <tr>
+   <th>Feature</th>
+   <th>Chrome</th>
+   <th>Firefox (Gecko)</th>
+   <th>Internet Explorer</th>
+   <th>Opera</th>
+   <th>Safari</th>
+  </tr>
+  <tr>
+   <td>Basic support</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatGeckoDesktop("32")}}</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatNo}}</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<div id="compat-mobile">
+<table class="compat-table">
+ <tbody>
+  <tr>
+   <th>Feature</th>
+   <th>Android</th>
+   <th>Chrome for Android</th>
+   <th>Firefox Mobile (Gecko)</th>
+   <th>IE Mobile</th>
+   <th>Opera Mobile</th>
+   <th>Safari Mobile</th>
+  </tr>
+  <tr>
+   <td>Basic support</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatGeckoMobile("32")}}</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatNo}}</td>
+   <td>{{CompatNo}}</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<h2 id="See_also" name="See_also">See also</h2>
+
+<ul>
+ <li>{{jsxref("Array")}}</li>
+ <li>{{jsxref("Array.prototype.map()")}}</li>
+ <li>{{jsxref("TypedArray.from()")}}</li>
+</ul>
