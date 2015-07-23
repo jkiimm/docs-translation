@@ -36,7 +36,11 @@
  <li><a href="/en-US/docs/Web/JavaScript/Guide/iterable">반복 가능한 객체</a> ({{jsxref("Map")}}과 {{jsxref("Set")}}와 같이 객체의 요소를 얻을 수 있는 객체).</li>
 </ul>
 
-<p><code>Array.from()</code> has an optional parameter <code>mapFn</code>, which allows you to execute a {{jsxref("Array.prototype.map", "map")}} function on each element of the array (or subclass object) that is being created. More clearly,<code> Array.from(obj, mapFn, thisArg)</code> is the same as <code>Array.from(obj).map(mapFn, thisArg)</code>, except that it does not create an intermediate array. This is especially important for certain array subclasses, like <a href="/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>, since the intermediate array would necessarily have values truncated to fit into the appropriate type.</p>
+<p>
+<code>Array.from()</code>는 선택 매개변수인 <code>mapFn</code>를 가지는데, 이 매개변수는 배열(혹은 서브 클래스 객체)의 각 요소에 대해 {{jsxref("Array.prototype.map", "map")}} 함수를 실행합니다.
+좀 더 정확하게, 중간에 배열을 만들지 않는 점을 제외한다면, <code>Array.from(obj, mapFn, thisArg)</code>는 <code>Array.from(obj).map(mapFn, thisArg)</code>와 같습니다.
+이 특징은 <a href="/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>와 같은 특정 배열 서브 클래스에서는 중간 배열 값이 적절한 유형에 맞게 생략되기 때문에 특히 중요합니다. 
+</p>
 
 <p>The <code>length</code> property of the <code>from()</code> method is 1.</p>
 
