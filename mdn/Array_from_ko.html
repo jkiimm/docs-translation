@@ -39,12 +39,12 @@
 <p>
 <code>Array.from()</code>는 선택 매개변수인 <code>mapFn</code>를 가지는데, 이 매개변수는 배열(혹은 서브 클래스 객체)의 각 요소에 대해 {{jsxref("Array.prototype.map", "map")}} 함수를 실행합니다.
 좀 더 정확하게, 중간에 배열을 만들지 않는 점을 제외한다면, <code>Array.from(obj, mapFn, thisArg)</code>는 <code>Array.from(obj).map(mapFn, thisArg)</code>와 같습니다.
-이 특징은 <a href="/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>와 같은 특정 배열 서브 클래스에서는 중간 배열 값이 적절한 유형에 맞게 생략되기 때문에 특히 중요합니다. 
+이 특징은 <a href="/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>와 같은 특정 배열 서브 클래스에서 중간 배열 값이 적절한 유형에 맞게 생략되기 때문에 특히 중요합니다. 
 </p>
 
-<p>The <code>length</code> property of the <code>from()</code> method is 1.</p>
+<p><code>from()</code> 메소드의 <code>length</code> 속성은 1입니다.</p>
 
-<h2 id="Examples">Examples</h2>
+<h2 id="Examples">예시</h2>
 
 <pre class="brush: js">// Array-like object (arguments) to Array
 function f() {
@@ -85,9 +85,15 @@ Array.from({length: 5}, (v, k) => k);
 
 </pre>
 
-<h2 id="Polyfill">Polyfill</h2>
+<h2 id="Polyfill">폴리필(Polyfill)</h2>
 
-<p><code>Array.from</code> was added to the ECMA-262 standard in the 6th edition; as such it may not be present in other implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of <code>Array.from</code> in implementations that don't natively support it.  This algorithm is exactly the one specified in ECMA-262, 6th edition, assuming <code>Object</code> and <code>TypeError</code> have their original values and that <code>callback.call</code> evaluates to the original value of {{jsxref("Function.prototype.call")}}. In addition, since true iterables can not be polyfilled, this implementation does not support generic iterables as defined in the 6th edition of ECMA-262.</p>
+<p>
+<code>Array.from</code>은 ECMA-262 6차 표준에 추가되었기에, 다른 표준의 구현 사항에서는 존재하지 않을 수 있습니다.
+다음 코드를 스크립트의 시작 부분에 추가함으로써, <code>Array.from</code>가 기본적으로 지원되지 않는 환경에서도 해당 메소드를 사용할 수 있습니다.
+ECMA-262 6차 버전에 지정되어 있는 이 알고리즘은 <code>Object</code>와 <code>TypeError</code>가 각자 원래 값을 가지게 하고,
+<code>callback.call</code>가 {{jsxref("Function.prototype.call")}}의 원래 값을 구하도록 합니다.
+또한, 실제 iterable이 폴리필 될 수 없기에, 이 구현 방법에서는 ECMA-262 6차 버전에 정의되어 있는 제네릭 iterable을 지원하지 않습니다.
+</p>
 
 <pre class="brush: js">// Production steps of ECMA-262, Edition 6, 22.1.2.1
 // Reference: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
@@ -169,7 +175,7 @@ if (!Array.from) {
 }
 </pre>
 
-<h2 id="Specifications">Specifications</h2>
+<h2 id="Specifications">명세</h2>
 
 <table class="standard-table">
  <tbody>
@@ -186,7 +192,7 @@ if (!Array.from) {
  </tbody>
 </table>
 
-<h2 id="Browser_compatibility">Browser compatibility</h2>
+<h2 id="Browser_compatibility">브라우저 호환성</h2>
 
 <div>{{CompatibilityTable}}</div>
 
@@ -238,7 +244,7 @@ if (!Array.from) {
 </table>
 </div>
 
-<h2 id="See_also" name="See_also">See also</h2>
+<h2 id="See_also" name="See_also">같이 보기</h2>
 
 <ul>
  <li>{{jsxref("Array")}}</li>
